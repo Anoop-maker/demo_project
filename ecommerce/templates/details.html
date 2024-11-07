@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container mt-5" style="margin-bottom:100px;">
+<h2 class="text-center">view details</h2>
+
+<div class="card mx-auto mb-3 bg-secondary " style="max-width: 600px;">
+  <div class="row g-0">
+    <div class="col-md-5">
+      <img src="{{details.image.url}}" class="rounded-start p-3 mt-3" height="300px" width="100%" alt="..." style="mt-3 mb-3">
+    </div>
+    <div class="col-md-7 mt-5">
+      <div class="card-body text-info">
+        <h5 class="card-title m-2 ">Name:{{details.name}}</h5>
+        <h5 class="card-text m-2" style="line-height:2;text-align:justify;">Description:{{details.desc}}</h5>
+          <h5 class="card-text m-2">Price:{{details.price}}</h5>
+        <h5 class="card-text m-2">Stock:{{details.stock}}</h5>
+          <h5 class="card-text m-2">Available:{{details.available}}</h5>
+          <h5 class="card-text m-2">Created:{{details.created}}</h5>
+          <h5 class="card-text m-2">Updated:{{details.updated}}</h5><br>
+
+        {% if user.is_superuser == True %}
+        {% if details.stock > 0 %}
+        <h5>Product In Stock</h5>
+                <a class="text-center btn btn-light fw-bold mt-3 mb-2" href="{% url 'shop:add_stock' details.id %}">ADD STOCK</a>
+        {% else %}
+        <h5>Product Out Of Stock</h5>
+                <a class="text-center btn btn-light fw-bold mt-3 mb-2" href="{% url 'shop:add_stock' details.id %}">ADD STOCK</a>
+        {% endif %}
+
+         {% else %}
+        {% if details.stock > 0 %}
+          <a class="text-center btn btn-light fw-bold mt-3 mb-2" href="{% url 'cart:cart' details.id %}">ADD TO CART</a>
+        {% else %}
+        <h5>Out Of Stock</h5>
+        {% endif %}
+        {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

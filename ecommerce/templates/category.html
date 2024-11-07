@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="row mt-3">
+        <div class="col-12">
+    <img src="{% static 'images/banner.jpg' %}" height="400px" width="100%">
+</div>
+    </div>
+<div class="row mt-3" style="margin-bottom:200px">
+    <div class="col-12">
+        <h2 class=" text-center fw-bold text-light mt-5 mb-5">Our Collections</h2>
+        <p class="text-black-50 fs-5" style="text-align:justify; line-height:2; ">Any written content for an online store, including product descriptions, headlines, category pages, promo offers, and landing pages. The goal of ecommerce website text is to attract, engage, and convert visitors into customers. Here are some tips for writing ecommerce website text:
+Know your target audience: Understand what your customers are looking for and what words they use when searching.
+Use a well-structured brief: Include information on the target group, writing style, and structure of the text</p>
+    </div>
+
+    </div>
+
+<div class="container mt-5" style="margin-bottom:100px;">
+    <div class="row">
+        {% for i in cat %}
+        <div class="col-sm-4">
+
+            <div class="card mx-auto border-border-5 border-danger rounded-3" style="width: 20rem;">
+  <img src="{{i.image.url}}" height=150px; width=100% class="card-img-top mt-4" alt="...">
+  <div class="card-body text-center">
+    <h5 class="card-title">{{i.name}}</h5>
+
+    <a href="{% url 'shop:product' i.id %}" class="btn btn-primary mx-auto">Products</a>
+  </div>
+</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

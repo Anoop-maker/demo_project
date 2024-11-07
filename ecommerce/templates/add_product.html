@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5 p-3" style="margin-bottom:100px;">
+<h2>Product Details...</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3 row">
+    <label  class="col-sm-2 col-form-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="n" placeholder="Enter Name">
+    </div>
+  </div>
+<br>
+        <div class="mb-3 row">
+    <label for="formFileLg" class="col-sm-2 col-form-label">Adding image</label>
+    <div class="col-sm-10">
+      <input type="file" class="form-control" name="i" placeholder="adding image" id="formFileLg">
+    </div>
+  </div>
+<br>
+        <div class="mb-3 row">
+<label  class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+  <textarea class="form-control" name="d" placeholder="Enter Description" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+    </div>
+  </div>
+        <br>
+
+       <div class="mb-3 row">
+    <label  class="col-sm-2 col-form-label">Stock</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" name="s" placeholder="Enter Stock">
+    </div>
+  </div>
+<br>
+         <div class="mb-3 row">
+    <label  class="col-sm-2 col-form-label">Price</label>
+    <div class="col-sm-10">
+      <input type="number" class="form-control" name="p" placeholder="Enter Price">
+    </div>
+  </div>
+<br><br>
+
+        <div class="mb-3 row">
+    <label  class="col-sm-2 col-form-label">Categories</label>
+
+        <select name="c" style=" height:50px; width:150px;">
+            {% for i in links %}
+            <option  value="{{i.name}}">{{i.name}}</option>
+            {% endfor %}
+        </select></div>
+
+
+        <div class="mb-3 text-center">
+
+  <input type="submit" value="SUBMIT">
+</div>
+    </form>
+</div>
+{% endblock %}

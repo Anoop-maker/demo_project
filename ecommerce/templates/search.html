@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2 >search Product</h2>
+
+<table class="table table-bordered bg-primary" style="margin-bottom:100px;">
+    <h3 class="text-center">you have searched for <span class="text=warning">{{q}}</span></h3>
+
+<div class="container mt-5" style="margin-bottom:100px">
+        {% if product == None %}
+<!--        if user is no query entered by the user-->
+            <h5 class="text-center">No Result Found</h5>
+
+        {% else %}
+        <div class="row">
+
+            {% for i in product %}
+            <div class="col-sm-4">
+    <img src="{{i.image.url}}" height="250px" width="100%" class="card-img-top">
+                <div class="body-center text-center">
+                    <h5 class="card-title mb-3">{{i.name}}</h5>
+                    <h5 class="card-title mb-3">{{i.price}}</h5>
+                    <h5 class="card-title mb-3">{{i.stock}}</h5>
+                    <a href="{% url 'shop:details' i.id %}" class="btn btn-secondary px-5 mb-5 fs-5">Details</a>
+
+</div>
+            </div>
+    </div>
+        {% empty %}
+<!--        if product sequence empty-->
+        <h5 class="text-center ">No Result Found</h5>
+        {% endfor %}
+    </div>
+
+</table>
+
+{% endif %}
+{% endblock %}
+
+
+<!--    <tr>-->
+<!--        <th>IMAGE</th>-->
+<!--        <th>NAME</th>-->
+<!--        <th>DESC</th>-->
+<!--        <th>PRICE</th>-->
+<!--        <th>STOCK</th>-->
+<!--        <th>AVAILABLE</th>-->
+<!--        <th>CREATED</th>-->
+<!--        <th>VIEW</th>-->
+<!--        <th>EDIT</th>-->
+<!--        <th>DELETE</th>-->
+<!--    </tr>-->
+<!--        {% for i in product %}-->
+<!--    <tr>-->
+<!--        <td><img src="{{i.image.url}}" height="150px" width="150px" ></td>-->
+<!--        <td>{{i.name}}</td>-->
+<!--        <td>{{i.desc}}</td>-->
+<!--        <td>{{i.price}}</td>-->
+<!--        <td>{{i.stock}}</td>-->
+<!--        <td>{{i.available}}</td>-->
+<!--        <td>{{i.created}}</td>-->
+<!--&lt;!&ndash;        <td><a href="{{i.pdf.url}}" class="btn btn-light">Download</a></td>&ndash;&gt;-->
+
+<!--    </tr>-->
+<!--    {% endfor %}-->
+
+<!--</table>-->
+

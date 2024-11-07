@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+  <h2 class="text-center text-primary mt-3">Welcome to your orders</h2>
+<div class="container mt-5" style="margin-bottom:100px;">
+    <div class="row">
+    <h1 class="text-center">Customer Name : {{user.username}}</h1>
+{% for i in orders %}
+<div class="card mx-auto mb-3 p-3 border border-2 border-dark-shadow" style="max-width: 800px;">
+  <div class="row g-0">
+    <div class="col-md-3">
+                <img src="{{i.product.image.url}}" height="100px" width="100px">
+</div>
+      <div class="col-md-8">
+          <div class="card-body">
+                <h5 class="card-title">Product Name : {{i.product.name}}</h5>
+              <h6 class="card-title">Price : <span class="text-primary">{{i.product.price}}</span> </h6>
+                    <h6 class="card-title">Quantity : {{i.quantity}}</h6>
+                <h6 class="card-title">Delivery Address : {{i.address}}</h6>
+                <h6 class="card-title">Phone : {{i.phone}}</h6>
+               <h6 class="card-title">Ordered on : {{i.order_date}}</h6>
+         <h6 class="card-title">Delivery status : <span class="text-danger">{{i.delivery_status}}</span></h6>
+
+                <p class="card-text"><small class="text-muted">Last updated 3 minits ago</small></p>
+
+      </div>
+          </div>
+    </div>
+  </div>
+        </div>
+ {% endfor %}
+</div>
+     </div>
+
+
+
+{% endblock %}

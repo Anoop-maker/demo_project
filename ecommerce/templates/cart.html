@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<h2>cart</h2>
+<div class="container mt-5 p-3" style="margin-bottom:100px;">
+
+<div class="row ">
+    <h2 class="mb-5 text-center">Shopping Cart</h2>
+
+    <div class="col-7">
+        <table class="table table-bordered border-1 border-warning">
+            <tr><th colspan="6" class="text-center">Cart Items</th></tr>
+            {% for i in cart %}
+            <tr>
+                <td><img src="{{i.product.image.url}}" height="100px" width="100px"></td>
+                <td><h5>{{i.product.name}}</h5></td>
+                <td><h6>Unit Price = {{i.product.price}} </h6><br>
+                    <h6>Quantity - {{i.quantity}}</h6></td>
+                <td><h6>Subtotal :- {{i.subtotal}}</h6></td>
+                <td>
+                    {% if i.product.stock > 0 %}
+                    <a href="{% url 'cart:cart' i.product.id %}"><i class="fa-solid fa-circle-plus fs-5 mx-1 mt-4 text-success"></i></a>
+                <a href="{% url 'cart:cart_remove' i.product.id %}"><i class="fa-solid fa-circle-minus fs-5 mx-1 text-warning"></i></a>
+                <a href="{% url 'cart:cart_delete' i.product.id %}"><i class="fa-regular fa-trash-can text-danger fd-5 mx-1"></i></a></td>
+                {% else %}
+                <a href="{% url 'cart:cart_remove' i.product.id %}"><i class="fa-solid fa-circle-minus fs-5 mx-1 text-warning"></i></a>
+                <a href="{% url 'cart:cart_delete' i.product.id %}"><i class="fa-regular fa-trash-can text-danger fd-5 mx-1"></i></a></td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+    <div class="col-4">
+    <table class="table table-bordered border-1 border-warning ">
+            <tr colspan="4"><th class="col-4 text-center">Check Out</th></tr>
+
+        <tr>
+            <td class="p-4"><b>
+                totalprice :{{total}}</b>
+            </td>
+            </tr>
+        </table><div class="d-flex justify-content-between fw-bold mt-5">
+            <a href="{% url 'cart:order_form' %}" class="btn btn-outline-danger text-dark" type="submit">Bay Now</a>
+        <a href="{% url 'shop:categories' %}" class="btn btn-outline-success text-dark" type="submit">Continue Shopping</a>
+</div>
+    </div>
+</div></div>
+{% endblock %}
